@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery.js"></script>
+    <script src="client.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <title>To Do App</title>
+</head>
+<body>
+    <header>
+        <h1>HANDY DANDY TO-DO LIST</h1>
+    </header>
+    
+    <form id="to-do-list-input">
+        <label>
+            Task 
+        </label>
+
+        <input required id="task" placeholder="Required">
+       
+        <label>
+            Category
+        </label>
+
+        <select id="category" required >
+            <option value="none" selected disabled hidden>Select One</option>
+            <option value="cleaning">Cleaning</option>
+            <option value="shopping">Shopping</option>
+            <option value="exercise">Exercise</option>
+            <option value="leisure">Leisure</option>
+            <option value="work">Work</option>
+            <option value="misc">Misc</option>
+         </select>
+
+         <button type="submit" id="submit-btn">Submit</button>
+
+
+    </form>
+
+    <div id="complete-div">
+        
+    </div>
+
+    <table>
+        <thead>
+            <th>Task</th>
+            <th>Category</th>
+            <th>Completed?</th>
+            <th></th>
+        </thead>
+
+        <tbody id="display-tasks">
+
+        </tbody>
+    </table>
+</body>
+</html>
