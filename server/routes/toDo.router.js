@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool');
 
+//handles get request, grabs all tasks from db and sends to client
 router.get('/', (req, res) => {
     let queryText = 'SELECT * FROM "tasks" ORDER BY "category";';
 
@@ -16,7 +17,7 @@ router.get('/', (req, res) => {
         })
 })
 
-
+//takes data sent from client and inserts in to new db row
 router.post('/', (req, res) => {
     let newTask = req.body;
     console.log('adding new task', newTask);
@@ -34,6 +35,7 @@ router.post('/', (req, res) => {
         })
 })
 
+//deletes db row with specified id
 router.delete('/:id', (req, res) => {
     let taskId = req.params.id;
     console.log('in delete', taskId);
@@ -57,6 +59,8 @@ router.delete('/:id', (req, res) => {
 
 });
 
+//updates completed status and completion date
+//for db item at specified id
 router.put('/:id', (req, res) =>{
     const sqlQuery = `
         UPDATE "tasks"

@@ -4,7 +4,7 @@ const toDoRouter = require('./routes/toDo.router.js')
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 
-
+//routes to todorouter
 app.use('/toDo', toDoRouter);
 
 

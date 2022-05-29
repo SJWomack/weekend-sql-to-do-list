@@ -22,7 +22,8 @@ function refreshToDo() {
     });
 }
 
-//renders tasks to dom
+//renders tasks to dom first checks if completed or not
+//then renders accordingly
 function appendToDo(todo) {
     $('#display-tasks').empty();
 
@@ -58,6 +59,7 @@ function appendToDo(todo) {
 
 }
 
+//on submit task packages up data to send to server
 function handlePostPackage(evt) {
     evt.preventDefault();
     let newTask = {}
@@ -72,6 +74,7 @@ function handlePostPackage(evt) {
     $('#category').val('');
 }
 
+//handles post to server first verifies all inputs have been filled in
 function addTask(task) {
 
     if (task.task === '' || task.category === null){
@@ -93,6 +96,7 @@ function addTask(task) {
         })
 }
 
+//handles deleting task sends delete request to server
 function handleDelete() {
     let taskId = $(this).data('id');
 
@@ -109,6 +113,8 @@ function handleDelete() {
         })
 }
 
+//handles complete btn press 
+//renders new input field to dom 
 function handleComplete() {
     let taskId = $(this).data('id');
     $('#complete-div').empty();
@@ -119,6 +125,8 @@ function handleComplete() {
     </div>`)
 }
 
+
+//grabs completion date and sends put request to server
 function handlePut() {
     let taskId = $(this).data('id');
     console.log(taskId);
