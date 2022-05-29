@@ -1,0 +1,37 @@
+body{background-color: bisque !important;}
+
+#submit-btn:hover {
+    background-color: darkgray;
+    opacity: 0.5;
+}
+
+#submit-btn{
+    margin-top: 1%;
+}
+
+header {
+    text-align: center;
+    background-color: lightsalmon;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    margin-bottom: 1rem;
+}
+
+#to-do-list-input{
+    margin: 2% auto;
+    width: 90%;
+    border: 2px ridge darkgrey;
+    background-color: gainsboro;
+    padding: 2%;
+    padding-bottom: 1%;
+}
+
+.complete-btn:hover{
+    background-color: lightgreen;
+    opacity: 0.5;
+}
+
+.delete-btn:hover{
+    background-color: red;
+    opacity: 0.5;
+}
