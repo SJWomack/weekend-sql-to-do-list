@@ -6,7 +6,7 @@ function readyNow() {
     $('#submit-btn').on('click', handlePostPackage);
     $('#display-tasks').on('click', '.delete-btn', handleDelete);
     $('#display-tasks').on('click', '.complete-btn', handleComplete);
-
+    $('#complete-div').on('click', '.submit-btn', handlePut)
 }
 
 //gets all tasks from server and calls appendToDo to render them on dom
@@ -29,15 +29,17 @@ function appendToDo(todo) {
     for (let tasks of todo) {
         let finished = 'No';
         if (tasks.completion === true) {
-            finished = 'Yes'
-
+            finished = 'Yes';
+            let date = new Date(tasks.date_completed).toLocaleDateString();
+            
+            
             $('#display-tasks').append(`
-            <tr>
+            <tr class="table-success">
                 <td> ${tasks.task}</td>
                 <td> ${tasks.category}</td>
                 <td> ${finished}</td>
-                <td> ${tasks.date_completed}</td>
-               <td> <button class="complete-btn">Complete</button></td>
+                <td> Completed on: ${date}</td>
+               <td> <button data-id="${tasks.id}" class="delete-btn">Remove </button> </td>
             </tr>
         `)
         }
@@ -56,7 +58,7 @@ function appendToDo(todo) {
 
 }
 
-function handlePostPackage(evt){
+function handlePostPackage(evt) {
     evt.preventDefault();
     let newTask = {}
     newTask.task = $('#task').val();
@@ -70,20 +72,25 @@ function handlePostPackage(evt){
     $('#category').val('');
 }
 
-function addTask(task){
+function addTask(task) {
+
+    if (task.task === '' || task.category === null){
+        alert('Please fill out all input fields!');
+        return false;
+    }
 
     $.ajax({
         type: 'POST',
         url: '/toDo',
         data: task
-     })
-    .then((response) =>{
-         console.log('response from server', response);
-         refreshToDo();
-     })
-    .catch((err) =>{
-        console.log('unable to add task', err);
     })
+        .then((response) => {
+            console.log('response from server', response);
+            refreshToDo();
+        })
+        .catch((err) => {
+            console.log('unable to add task', err);
+        })
 }
 
 function handleDelete() {
@@ -93,20 +100,44 @@ function handleDelete() {
         method: 'DELETE',
         url: `/toDo/${taskId}`
     })
-    .then(()=>{
-      console.log('delete success');
-      refreshToDo();
-    })
-    .catch((err) =>{
-        console.log('error deleting', err);
-    })
+        .then(() => {
+            console.log('delete success');
+            refreshToDo();
+        })
+        .catch((err) => {
+            console.log('error deleting', err);
+        })
 }
 
 function handleComplete() {
-
-    $('#complete-div').append(`
+    let taskId = $(this).data('id');
+    $('#complete-div').empty();
+    $('#complete-div').append(`<div class="alert alert-dark">
         <label>Date Completed</label>
-        <input type="date">
-        <button class="submit-btn">Submit</button>
-    `)
+        <input id="date-completed" type="date">
+        <button data-id="${taskId}" class="submit-btn">Submit</button>
+    </div>`)
+}
+
+function handlePut() {
+    let taskId = $(this).data('id');
+    console.log(taskId);
+
+    const dateComplete = { date: $('#date-completed').val() };
+
+    $.ajax({
+        method: 'PUT',
+        url: `/toDo/${taskId}`,
+        data: dateComplete
+    })
+        .then(res => {
+            console.log('PUT success');
+            $('#complete-div').empty();
+            refreshToDo();
+        })
+        .catch(err => {
+
+            console.log('PUT failed: ', err);
+        });
+
 }

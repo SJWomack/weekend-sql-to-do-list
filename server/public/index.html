@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,49 +8,55 @@
     <script src="jquery.js"></script>
     <script src="client.js"></script>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>To Do App</title>
 </head>
+
 <body>
     <header>
         <h1>HANDY DANDY TO-DO LIST</h1>
     </header>
-    
+
     <form id="to-do-list-input">
-        <label>
-            Task 
-        </label>
+        <div class="form-row">
+            <label for="task">
+                Task Name:
+            </label>
 
-        <input required id="task" placeholder="Required">
-       
-        <label>
-            Category
-        </label>
+            <input class="form-control" required id="task" placeholder="Required">
+        </div>
+        <div class="form-group">
+            <label for="category">
+                Category
+            </label>
 
-        <select id="category" required >
-            <option value="none" selected disabled hidden>Select One</option>
-            <option value="cleaning">Cleaning</option>
-            <option value="shopping">Shopping</option>
-            <option value="exercise">Exercise</option>
-            <option value="leisure">Leisure</option>
-            <option value="work">Work</option>
-            <option value="misc">Misc</option>
-         </select>
+            <select class="form-control" id="category" required>
+                <option value="none" selected disabled hidden>Select One</option>
+                <option value="cleaning">Cleaning</option>
+                <option value="shopping">Shopping</option>
+                <option value="exercise">Exercise</option>
+                <option value="leisure">Leisure</option>
+                <option value="work">Work</option>
+                <option value="misc">Misc</option>
+            </select>
 
-         <button type="submit" id="submit-btn">Submit</button>
-
+            <button class="btn-lg" type="submit" id="submit-btn">Submit</button>
+        </div>
 
     </form>
 
     <div id="complete-div">
-        
+
     </div>
 
-    <table>
-        <thead>
-            <th>Task</th>
-            <th>Category</th>
-            <th>Completed?</th>
-            <th></th>
+    <table class="table table-light table-striped ">
+        <thead class="thead-dark">
+            <th scope="col">Task</th>
+            <th scope="col">Category</th>
+            <th scope="col">Completed?</th>
+            <th scope="col">Done!</th>
+            <th scope="col">Remove Task</th>
         </thead>
 
         <tbody id="display-tasks">
@@ -57,4 +64,5 @@
         </tbody>
     </table>
 </body>
+
 </html>

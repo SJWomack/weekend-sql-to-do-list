@@ -55,8 +55,29 @@ router.delete('/:id', (req, res) => {
             res.sendStatus(500);
         });
 
-})
+});
 
+router.put('/:id', (req, res) =>{
+    const sqlQuery = `
+        UPDATE "tasks"
+        SET "date_completed" = $2, "completion" = $3
+        WHERE id = $1;
+    `;
+    const sqlParams = [
+        req.params.id,                 
+        req.body.date,
+        true       
+    ];
+
+    pool.query(sqlQuery, sqlParams)
+        .then(() => {
+            res.sendStatus(200);
+        })
+        .catch((err) => {
+            console.log(`PUT failed, ${err}`);
+            res.sendStatus(500);
+        });
+});
 
 
 
