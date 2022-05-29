@@ -45,7 +45,7 @@ router.delete('/:id', (req, res) => {
         WHERE "id" = $1;
     `;
     const sqlParams = [
-        taskId,             
+        taskId,
     ];
 
     pool.query(sqlQuery, sqlParams)
@@ -61,16 +61,16 @@ router.delete('/:id', (req, res) => {
 
 //updates completed status and completion date
 //for db item at specified id
-router.put('/:id', (req, res) =>{
+router.put('/:id', (req, res) => {
     const sqlQuery = `
         UPDATE "tasks"
         SET "date_completed" = $2, "completion" = $3
         WHERE id = $1;
     `;
     const sqlParams = [
-        req.params.id,                 
+        req.params.id,
         req.body.date,
-        true       
+        true
     ];
 
     pool.query(sqlQuery, sqlParams)

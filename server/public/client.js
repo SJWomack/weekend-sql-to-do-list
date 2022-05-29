@@ -32,8 +32,8 @@ function appendToDo(todo) {
         if (tasks.completion === true) {
             finished = 'Yes';
             let date = new Date(tasks.date_completed).toLocaleDateString();
-            
-            
+
+
             $('#display-tasks').append(`
             <tr class="table-success">
                 <td> ${tasks.task}</td>
@@ -77,7 +77,7 @@ function handlePostPackage(evt) {
 //handles post to server first verifies all inputs have been filled in
 function addTask(task) {
 
-    if (task.task === '' || task.category === null){
+    if (task.task === '' || task.category === null) {
         alert('Please fill out all input fields!');
         return false;
     }

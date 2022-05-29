@@ -1,11 +1,13 @@
-body{background-color: bisque !important;}
+body {
+    background-color: bisque !important;
+}
 
 #submit-btn:hover {
     background-color: darkgray;
     opacity: 0.5;
 }
 
-#submit-btn{
+#submit-btn {
     margin-top: 1%;
 }
 
@@ -17,7 +19,7 @@ header {
     margin-bottom: 1rem;
 }
 
-#to-do-list-input{
+#to-do-list-input {
     margin: 2% auto;
     width: 90%;
     border: 2px ridge darkgrey;
@@ -26,12 +28,12 @@ header {
     padding-bottom: 1%;
 }
 
-.complete-btn:hover{
+.complete-btn:hover {
     background-color: lightgreen;
     opacity: 0.5;
 }
 
-.delete-btn:hover{
+.delete-btn:hover {
     background-color: red;
     opacity: 0.5;
 }
